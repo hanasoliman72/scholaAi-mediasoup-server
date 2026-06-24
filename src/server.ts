@@ -1,9 +1,9 @@
+import 'dotenv/config';
 import express from 'express';
 import { createServer } from 'http';
 import { Server as SocketIOServer } from 'socket.io';
 import { createWorkers, getNextWorker } from './MediasoupWorker';
 import { Room } from './Room';
-import 'dotenv/config';
 
 const app = express();
 const httpServer = createServer(app);
@@ -27,7 +27,6 @@ io.on('connection', (socket) => {
 
     socket.on('joinSession', async ({ sessionId, peerId, role, token }) => {
         try {
-            // TODO: validate token with .NET API
             const room = await getOrCreateRoom(sessionId);
             await room.addPeer(socket, peerId, role);
         } catch (error) {
@@ -48,5 +47,6 @@ async function start() {
         console.log('Server listening on port 4443');
     });
 }
-
+console.log('[Config] ANNOUNCED_IP =', process.env.ANNOUNCED_IP);
+//console.log('[Config] mediasoup transport ip config:', JSON.stringify(config.mediasoup.webRtcTransportOptions.listenInfos));
 start().catch(console.error);
