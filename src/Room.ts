@@ -185,6 +185,15 @@ export class Room {
             }
         });
 
+        // Student → Teacher: live focus score relay
+        socket.on('focusUpdate', ({ score }: { score: number }) => {
+            this.broadcast(socket.id, 'focusUpdate', {
+                peerId: peer.id,
+                role: peer.role,
+                score,
+            });
+        });
+
         socket.on('getProducers', (callback) => {
             const producers: {
                 producerId: string;

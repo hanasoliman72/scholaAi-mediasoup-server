@@ -50,6 +50,11 @@ export const config = {
                 },
             ],
             initialAvailableOutgoingBitrate: 1000000,
+            // STUN server so ICE can still gather candidates if direct UDP is blocked
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun1.l.google.com:19302' },
+            ],
         },
     },
 };
