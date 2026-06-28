@@ -148,9 +148,3 @@ my-session-server/
 | Frontend | `ScholaAi-Front-End` | React app consumed by teachers & students |
 | Backend API | `ScholaAi` (.NET) | REST API, auth, session management |
 | AI Model Hub | `ScholaAi-model-hub` | Focus detection & session summarization |
-
----
-
-## 📄 License
-
-ISC
